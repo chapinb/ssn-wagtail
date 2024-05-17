@@ -1,3 +1,6 @@
+# Static files from third parties
+wagtail_site/static/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

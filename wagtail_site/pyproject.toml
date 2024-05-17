@@ -19,3 +19,8 @@ pytest-django = "^4.8.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "wagtail_site.settings.dev"
+# -- recommended but optional:
+python_files = ["test_*.py", "*_test.py"]
