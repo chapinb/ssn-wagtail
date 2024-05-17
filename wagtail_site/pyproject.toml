@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "ssn-wagtail"
+version = "0.1.0"
+description = ""
+authors = ["Chapin Bryce <mail@chapinb.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+wagtail = "^6.1"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.4"
+mypy = "^1.10.0"
+pytest = "^8.2.0"
+pytest-django = "^4.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
