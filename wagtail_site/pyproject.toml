@@ -7,6 +7,8 @@ authors = ["Chapin Bryce <mail@chapinb.com>"]
 [tool.poetry.dependencies]
 python = "^3.12"
 wagtail = "^6.1"
+python-decouple = "^3.8"
+gunicorn = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.4.4"
