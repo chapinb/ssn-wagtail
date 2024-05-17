@@ -32,6 +32,8 @@ jobs:
         poetry run python manage.py collectstatic --noinput
         poetry run pytest
         poetry run python manage.py check --deploy --settings wagtail_site.settings.production --fail-level INFO
+      env:
+        DJANGO_SECRET: ${{ vars.DJANGO_SECRET }}
 
   pre-commit:
     runs-on: ubuntu-latest
