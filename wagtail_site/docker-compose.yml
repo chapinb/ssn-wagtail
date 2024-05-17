@@ -8,6 +8,8 @@ services:
       - 127.0.0.1:8000:8000
     depends_on:
       - db
+    environment:
+      DB_HOST: db  # Explicitly set, as your .env may use `localhost`
   db:
     image: public.ecr.aws/docker/library/postgres:16
     environment:
@@ -15,6 +17,8 @@ services:
       POSTGRES_DB: development
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 127.0.0.1:5432:5432
 
 volumes:
   postgres_data:

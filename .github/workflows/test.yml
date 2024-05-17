@@ -10,6 +10,23 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: public.ecr.aws/docker/library/postgres:16
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: development  # pragma: allowlist secret
+          POSTGRES_DB: development
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+
     steps:
     - uses: actions/checkout@v4
 
@@ -36,6 +53,12 @@ jobs:
         DJANGO_SECRET: some-long-value-used-only-in-CI-to-confirm-other-settings-are-valid  # pragma: allowlist secret
         DJANGO_SETTINGS_MODULE: wagtail_site.settings.dev
         ALLOWED_HOSTS: "example.internal"
+        DB_HOST: localhost
+        DB_PORT: "5432"
+        DB_USER: postgres
+        DB_PASS: development  # pragma: allowlist secret
+        DB_NAME: development
+        DB_SSL_MODE: allowed
 
   pre-commit:
     runs-on: ubuntu-latest
