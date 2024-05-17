@@ -58,7 +58,7 @@ jobs:
         DB_USER: postgres
         DB_PASS: development  # pragma: allowlist secret
         DB_NAME: development
-        DB_SSL_MODE: allowed
+        DB_SSL_MODE: disable
 
   pre-commit:
     runs-on: ubuntu-latest
