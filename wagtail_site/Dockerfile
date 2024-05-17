@@ -55,4 +55,4 @@ COPY --chown=wagtail:wagtail . .
 USER wagtail
 
 # Runtime command that executes when "docker run" is called
-CMD set -xe; poetry run gunicorn wagtail_site.wsgi:application
+CMD ./entrypoint.sh
