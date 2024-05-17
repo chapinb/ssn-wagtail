@@ -17,6 +17,7 @@ SECURE_HSTS_SECONDS = 60  # Set to 1 minute while prototyping
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
@@ -24,3 +25,4 @@ CSRF_COOKIE_SECURE = True
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")]
 )
+USE_X_FORWARDED_HOST = True
