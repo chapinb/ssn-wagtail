@@ -1,0 +1,48 @@
+name: Test
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-python@v3
+      id: setup-python
+      with:
+        python-version: "3.12"
+
+    - name: Restore cached python dependencies
+      id: restore-python-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: ~/.cache/pypoetry
+        key: ${{ runner.os }}-poetry-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Install dependencies
+      run: |
+        pip install -U pip setuptools
+        pip install poetry pre-commit
+        poetry install --no-root
+    - name: Run tests
+      run: |
+        poetry run pytest
+
+    - name: Restore cached python dependencies
+      uses: actions/cache/save@v4
+      with:
+        path: ~/.cache/pypoetry
+        key: ${{ steps.restore-python-cache.outputs.cache-primary-key }}
+
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+    - uses: pre-commit/action@v3.0.1
