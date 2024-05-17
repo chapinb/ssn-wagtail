@@ -1,4 +1,4 @@
-from .base import *
+from .base import *  # noqa: F403
 from decouple import config
 
 # SECURITY WARNING: keep the secret key used in production secret!
