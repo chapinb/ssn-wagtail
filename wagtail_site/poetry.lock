@@ -899,7 +899,10 @@ files = [
 [package.dependencies]
 defusedxml = ">=0.7,<1.0"
 filetype = ">=1.0.10,<1.1.0 || >1.1.0"
-pillow-heif = {version = ">=0.13.0,<1.0.0", optional = true, markers = "extra == \"heif\" and python_version >= \"3.12\""}
+pillow-heif = [
+    {version = ">=0.10.0,<1.0.0", optional = true, markers = "extra == \"heif\" and python_version < \"3.12\""},
+    {version = ">=0.13.0,<1.0.0", optional = true, markers = "extra == \"heif\" and python_version >= \"3.12\""},
+]
 
 [package.extras]
 docs = ["Sphinx (>=7.0)", "sphinx-wagtail-theme (>=6.1.1,<7.0)", "sphinx_copybutton (>=0.5)", "sphinxcontrib-spelling (>=8.0,<9.0)"]
@@ -910,5 +913,5 @@ wand = ["Wand (>=0.6,<1.0)"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.12"
-content-hash = "b3564b593671c0f9239ec7bf0e5e8707d9c347e9667d8ab0a7ad234c1dfcd7a8"
+python-versions = "^3.11"
+content-hash = "bd35295149aec945248b969252e691c1bcca01a5b7257c5f8bc8a2474d9ac7c0"
