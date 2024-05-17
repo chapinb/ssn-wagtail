@@ -29,9 +29,11 @@ jobs:
       run: |
         pip install -U pip setuptools
         pip install poetry pre-commit
+        cd wagtail_site
         poetry install --no-root
     - name: Run tests
       run: |
+        cd wagtail_site
         poetry run pytest
 
     - name: Restore cached python dependencies
