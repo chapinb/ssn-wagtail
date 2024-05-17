@@ -34,6 +34,7 @@ jobs:
         poetry run python manage.py check --deploy --settings wagtail_site.settings.production --fail-level INFO
       env:
         DJANGO_SECRET: some-long-value-used-only-in-CI-to-confirm-other-settings-are-valid  # pragma: allowlist secret
+        ALLOWED_HOSTS: "example.internal"
 
   pre-commit:
     runs-on: ubuntu-latest
