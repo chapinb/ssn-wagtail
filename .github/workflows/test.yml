@@ -29,7 +29,6 @@ jobs:
     - name: Run tests
       run: |
         cd wagtail_site
-        export DJANGO_SECRET=${{ secrets.DJANGO_SECRET }}
         poetry run python manage.py collectstatic --noinput
         poetry run pytest
         poetry run python manage.py check --deploy --settings wagtail_site.settings.production --fail-level INFO
