@@ -13,22 +13,17 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: actions/setup-python@v3
+    - name: Install poetry
+      run: pipx install poetry
+
+    - uses: actions/setup-python@v5
       id: setup-python
       with:
         python-version: "3.12"
-
-    - name: Restore cached python dependencies
-      id: restore-python-cache
-      uses: actions/cache/restore@v4
-      with:
-        path: ~/.cache/pypoetry
-        key: ${{ runner.os }}-poetry-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+        cache: 'poetry'
 
     - name: Install dependencies
       run: |
-        pip install -U pip setuptools
-        pip install poetry pre-commit
         cd wagtail_site
         poetry install --no-root
     - name: Run tests
@@ -40,15 +35,11 @@ jobs:
       env:
         DJANGO_SECRET: ${{ secrets.DJANGO_SECRET }}
 
-    - name: Restore cached python dependencies
-      uses: actions/cache/save@v4
-      with:
-        path: ~/.cache/pypoetry
-        key: ${{ steps.restore-python-cache.outputs.cache-primary-key }}
-
   pre-commit:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
+    - uses: actions/setup-python@v5
+      with:
+        cache: 'pip'
     - uses: pre-commit/action@v3.0.1
