@@ -168,6 +168,12 @@ LOGGING = {
         "handlers": ["console"],
         "level": "INFO",
     },
+    "loggers": {
+        "": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+    },
 }
 
 
