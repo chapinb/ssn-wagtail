@@ -36,6 +36,9 @@ jobs:
         cd wagtail_site
         poetry run python manage.py collectstatic --noinput
         poetry run pytest
+        poetry run python manage.py check --deploy
+      env:
+        DJANGO_SECRET: $${{ secrets.DJANGO_SECRET }}
 
     - name: Restore cached python dependencies
       uses: actions/cache/save@v4
