@@ -36,7 +36,7 @@ jobs:
         cd wagtail_site
         poetry run python manage.py collectstatic --noinput
         poetry run pytest
-        poetry run python manage.py check --deploy
+        poetry run python manage.py check --deploy --settings wagtail_site.settings.production
       env:
         DJANGO_SECRET: $${{ secrets.DJANGO_SECRET }}
 
