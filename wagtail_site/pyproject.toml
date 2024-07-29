@@ -10,7 +10,7 @@ wagtail = "^6.1"
 python-decouple = "^3.8"
 gunicorn = "^22.0.0"
 whitenoise = "^6.6.0"
-psycopg = {extras = ["binary", "pool"], version = "^3.1.19"}
+psycopg = {extras = ["binary", "pool"], version = "^3.2.1"}
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.5.4"
